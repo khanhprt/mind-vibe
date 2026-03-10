@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PixelEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_text_pixel_background</item>
+        <item name="android:textColor">@color/pixel_green_dark</item>
+        <item name="android:textColorHint">@color/pixel_green_medium</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="PixelButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_pixel_background</item>
+        <item name="android:textColor">@color/pixel_green_very_light</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PixelAppName" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/pixel_green_dark</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PixelAuthorName" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/pixel_green_dark</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="PixelClickableText" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/pixel_green_dark</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
