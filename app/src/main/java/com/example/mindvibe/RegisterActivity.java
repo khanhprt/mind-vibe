@@ -1,5 +1,6 @@
 package com.example.mindvibe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (isAdded) {
                     Toast.makeText(RegisterActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                    finish(); // Go back to LoginActivity
+                    openMainActivity();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Registration failed. Email might already exist.", Toast.LENGTH_SHORT).show();
                 }
@@ -63,5 +64,11 @@ public class RegisterActivity extends AppCompatActivity {
                 finish(); // Simply close this activity to go back to Login
             }
         });
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

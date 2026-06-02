@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Purple lavender palette -->
+    <color name="purple_primary">#7C3AED</color>
+    <color name="purple_dark">#3D2C6B</color>
+    <color name="purple_label">#7B6A99</color>
+    <color name="purple_muted">#9B8CB0</color>
+    <color name="purple_icon">#B09CC8</color>
+    <color name="purple_hint">#C0B4D8</color>
+    <color name="purple_divider">#DDD5EE</color>
+    <color name="purple_border">#E2D9F0</color>
 
-    <!-- Pixel Green Palette -->
-    <color name="pixel_green_dark">#3A6343</color>
-    <color name="pixel_green_medium">#588B5B</color>
-    <color name="pixel_green_light">#93C79A</color>
-    <color name="pixel_green_very_light">#D0EAD1</color>
+    <!-- Background gradient colors -->
+    <color name="bg_gradient_top">#FDF6F0</color>
+    <color name="bg_gradient_bottom">#F0EBF8</color>
+
+    <!-- General -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="bg_screen">#F7F4FC</color>
+
+    <!-- Soft purple background for AI avatar chip -->
+    <color name="purple_soft_bg">#F0EAFB</color>
+
+    <!-- Bottom nav active indicator background -->
+    <color name="purple_indicator">#EDE7FB</color>
 </resources>
