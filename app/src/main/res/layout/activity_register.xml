@@ -52,7 +52,7 @@
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
                 android:layout_marginBottom="16dp">
 
@@ -195,7 +195,7 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:backgroundTint="@color/purple_primary"
-                app:cornerRadius="14dp"
+                app:cornerRadius="10dp"
                 android:stateListAnimator="@null"
                 android:elevation="0dp"
                 android:layout_marginBottom="28dp" />

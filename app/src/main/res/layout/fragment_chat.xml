@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_screen">
+    android:background="@color/vibe_surface">
 
     <LinearLayout
         android:id="@+id/listContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/bg_screen"
+        android:background="@color/vibe_surface"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,29 +18,100 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/chatListHeader"
+            android:id="@+id/chatSearchHeader"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="64dp"
+            android:background="@color/vibe_primary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingEnd="8dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_bar"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="Tim kiem"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/vibe_primary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Tim kiem"
+                    android:textColor="@color/vibe_text_hint"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Them"
+                android:padding="9dp"
+                android:src="@drawable/ic_more_vert"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:background="@color/white"
             android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp">
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="Tin nhan"
-                android:textColor="@color/purple_dark"
-                android:textSize="22sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_vibe_chip"
+                android:gravity="center"
+                android:minWidth="68dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="Tat ca"
+                android:textColor="@color/vibe_primary"
+                android:textSize="13sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="Chon mot doan chat de mo tro chuyen"
-                android:textColor="@color/purple_muted"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:minWidth="76dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Chua doc"
+                android:textColor="@color/vibe_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:minWidth="64dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Nhom"
+                android:textColor="@color/vibe_text_secondary"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -48,16 +119,15 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/purple_divider" />
+            android:background="@color/vibe_divider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewChats"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/white"
             android:clipToPadding="false"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
             android:scrollbars="none" />
 
     </LinearLayout>
@@ -66,7 +136,7 @@
         android:id="@+id/detailContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/bg_screen"
+        android:background="@color/vibe_surface"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,41 +147,50 @@
             android:id="@+id/chatHeader"
             android:layout_width="0dp"
             android:layout_height="64dp"
-            android:background="@color/white"
+            android:background="@color/vibe_primary"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/buttonBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Quay lai"
-                android:padding="9dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_arrow_back"
-                app:tint="@color/purple_dark" />
+                app:tint="@color/white" />
 
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:layout_marginEnd="12dp"
-                app:cardBackgroundColor="@color/purple_soft_bg"
-                app:cardCornerRadius="21dp"
-                app:cardElevation="0dp">
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="10dp">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_app_logo_mindvibe" />
+                <TextView
+                    android:id="@+id/textDetailAvatar"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="M"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
-            </androidx.cardview.widget.CardView>
+                <View
+                    android:id="@+id/viewDetailOnlineDot"
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/bg_online_dot" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -127,7 +206,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:maxLines="1"
                     android:text="MindVibe AI"
-                    android:textColor="@color/purple_dark"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <TextView
@@ -137,28 +216,28 @@
                     android:layout_marginTop="2dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="San sang lang nghe"
-                    android:textColor="@color/purple_muted"
+                    android:text="Dang hoat dong"
+                    android:textColor="@color/vibe_primary_soft"
                     android:textSize="12sp" />
 
             </LinearLayout>
 
-        </LinearLayout>
+            <ImageButton
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Tim trong chat"
+                android:padding="11dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/white" />
 
-        <View
-            android:id="@+id/headerDivider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/purple_divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chatHeader" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewMessages"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/bg_screen"
+            android:background="@color/vibe_surface"
             android:clipToPadding="false"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -166,7 +245,7 @@
             app:layout_constraintBottom_toTopOf="@id/inputPanel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/headerDivider" />
+            app:layout_constraintTop_toBottomOf="@id/chatHeader" />
 
         <LinearLayout
             android:id="@+id/inputPanel"
@@ -175,10 +254,10 @@
             android:background="@color/white"
             android:gravity="bottom"
             android:orientation="horizontal"
-            android:paddingStart="12dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -188,30 +267,30 @@
                 style="@style/MindVibeChatInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nhap tin nhan..."
+                    android:hint="Nhap tin nhan"
                     android:imeOptions="actionSend"
                     android:inputType="textCapSentences|textMultiLine"
                     android:maxLines="4"
-                    android:minHeight="48dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="@color/purple_dark"
-                    android:textColorHint="@color/purple_hint"
+                    android:minHeight="46dp"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="11dp"
+                    android:textColor="@color/vibe_text_primary"
+                    android:textColorHint="@color/vibe_text_hint"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/buttonSend"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
                 android:background="@drawable/bg_send_button"
                 android:contentDescription="Gui"
                 android:padding="13dp"

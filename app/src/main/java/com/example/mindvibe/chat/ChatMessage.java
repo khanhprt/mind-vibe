@@ -24,7 +24,7 @@ public class ChatMessage {
     }
 
     public static ChatMessage loadingFromAi() {
-        return new ChatMessage(UUID.randomUUID().toString(), "Đang suy nghĩ...", MessageSender.AI, true);
+        return new ChatMessage(UUID.randomUUID().toString(), "Dang suy nghi...", MessageSender.AI, true);
     }
 
     public String getId() {

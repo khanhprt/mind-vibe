@@ -11,10 +11,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.drawable.GradientDrawable;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +33,11 @@ import java.util.List;
 
 public class ChatFragment extends Fragment {
     private View listContainer, detailContainer;
+    private View viewDetailOnlineDot;
     private RecyclerView recyclerViewChats, recyclerViewMessages;
     private TextInputEditText editTextMessage;
     private ImageButton buttonBack, buttonSend;
-    private TextView textChatTitle, textChatStatus;
+    private TextView textChatTitle, textChatStatus, textDetailAvatar;
     private ChatMessageAdapter messageAdapter;
     private AiChatClient aiChatClient;
     private OnBackPressedCallback detailBackCallback;
@@ -78,6 +81,8 @@ public class ChatFragment extends Fragment {
         buttonSend = null;
         textChatTitle = null;
         textChatStatus = null;
+        textDetailAvatar = null;
+        viewDetailOnlineDot = null;
         detailBackCallback = null;
         super.onDestroyView();
     }
@@ -92,6 +97,8 @@ public class ChatFragment extends Fragment {
         buttonSend = view.findViewById(R.id.buttonSend);
         textChatTitle = view.findViewById(R.id.textChatTitle);
         textChatStatus = view.findViewById(R.id.textChatStatus);
+        textDetailAvatar = view.findViewById(R.id.textDetailAvatar);
+        viewDetailOnlineDot = view.findViewById(R.id.viewDetailOnlineDot);
     }
 
     private void setupConversationList() {
@@ -144,11 +151,78 @@ public class ChatFragment extends Fragment {
         List<Conversation> conversations = new ArrayList<>();
         conversations.add(new Conversation(
                 "MindVibe AI",
-                "Bam de bat dau tro chuyen",
-                "Hom nay",
+                "Minh co the giup ban len ke hoach hom nay.",
+                "09:45",
+                1,
+                "M",
+                R.color.vibe_primary,
+                true,
+                "Dang hoat dong",
+                createMessages(
+                        ChatMessage.fromAi("Chao ban, hom nay minh co the giup gi?"),
+                        ChatMessage.fromUser("Toi muon sap xep cong viec buoi sang."),
+                        ChatMessage.fromAi("Minh goi y uu tien 3 viec quan trong truoc, roi de cac viec nho vao cuoi ngay.")
+                )
+        ));
+        conversations.add(new Conversation(
+                "Linh Tran",
+                "Toi gui file roi, ban xem giup nhe.",
+                "08:21",
+                2,
+                "L",
+                R.color.vibe_pink,
+                true,
+                "Vua moi truy cap",
+                createMessages(
+                        ChatMessage.fromAi("Sang nay hop luc 10h dung khong?"),
+                        ChatMessage.fromUser("Dung roi, minh dang chuan bi slide."),
+                        ChatMessage.fromAi("Toi gui file roi, ban xem giup nhe.")
+                )
+        ));
+        conversations.add(new Conversation(
+                "Nhom Android",
+                "Duc: Layout moi nhin giong Zalo hon roi.",
+                "Hom qua",
+                5,
+                "#",
+                R.color.vibe_green,
+                false,
+                "12 thanh vien",
+                createMessages(
+                        ChatMessage.fromAi("Duc: Layout moi nhin giong Zalo hon roi."),
+                        ChatMessage.fromUser("Minh dang them search bar cho ca 3 tab."),
+                        ChatMessage.fromAi("Thao: Nho giu bottom nav luon hien nhe.")
+                )
+        ));
+        conversations.add(new Conversation(
+                "Gia dinh",
+                "Toi nay an com som nha.",
+                "Thu 2",
                 0,
-                "San sang lang nghe",
-                "Xin chao, minh la MindVibe AI. Hom nay ban muon chia se dieu gi?"
+                "G",
+                R.color.vibe_orange,
+                false,
+                "4 thanh vien",
+                createMessages(
+                        ChatMessage.fromAi("Me: Toi nay an com som nha."),
+                        ChatMessage.fromUser("Da, con ve truoc 7h."),
+                        ChatMessage.fromAi("Ba: Nho mua them trai cay.")
+                )
+        ));
+        conversations.add(new Conversation(
+                "Cloud cua toi",
+                "Da luu ghi chu: y tuong giao dien chat.",
+                "01/06",
+                0,
+                "C",
+                R.color.vibe_teal,
+                false,
+                "Kho luu tru rieng",
+                createMessages(
+                        ChatMessage.fromAi("Da luu ghi chu: y tuong giao dien chat."),
+                        ChatMessage.fromUser("Them avatar tron, badge do va search bar xanh."),
+                        ChatMessage.fromAi("Da dong bo tren Cloud cua toi.")
+                )
         ));
         return conversations;
     }
@@ -156,12 +230,12 @@ public class ChatFragment extends Fragment {
     private void openConversation(Conversation conversation) {
         textChatTitle.setText(conversation.title);
         textChatStatus.setText(conversation.status);
-        if (messageAdapter.getItemCount() == 0) {
-            messageAdapter.addMessage(ChatMessage.fromAi(conversation.greeting));
-        }
+        textDetailAvatar.setText(conversation.avatarText);
+        setAvatarColor(textDetailAvatar, conversation.avatarColorRes);
+        viewDetailOnlineDot.setVisibility(conversation.online ? View.VISIBLE : View.GONE);
+        messageAdapter.setMessages(conversation.messages);
         listContainer.setVisibility(View.GONE);
         detailContainer.setVisibility(View.VISIBLE);
-        setBottomNavigationVisible(false);
         if (detailBackCallback != null) {
             detailBackCallback.setEnabled(true);
         }
@@ -172,16 +246,24 @@ public class ChatFragment extends Fragment {
     private void showConversationList() {
         listContainer.setVisibility(View.VISIBLE);
         detailContainer.setVisibility(View.GONE);
-        setBottomNavigationVisible(true);
         if (detailBackCallback != null) {
             detailBackCallback.setEnabled(false);
         }
     }
 
-    private void setBottomNavigationVisible(boolean visible) {
-        if (requireActivity() instanceof MainActivity) {
-            ((MainActivity) requireActivity()).setBottomNavigationVisible(visible);
+    private List<ChatMessage> createMessages(ChatMessage... messages) {
+        List<ChatMessage> chatMessages = new ArrayList<>();
+        for (ChatMessage message : messages) {
+            chatMessages.add(message);
         }
+        return chatMessages;
+    }
+
+    private void setAvatarColor(TextView avatarView, int colorRes) {
+        GradientDrawable background = new GradientDrawable();
+        background.setShape(GradientDrawable.OVAL);
+        background.setColor(ContextCompat.getColor(requireContext(), colorRes));
+        avatarView.setBackground(background);
     }
 
     private boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
@@ -280,23 +362,32 @@ public class ChatFragment extends Fragment {
         final String preview;
         final String time;
         final int unreadCount;
+        final String avatarText;
+        final int avatarColorRes;
+        final boolean online;
         final String status;
-        final String greeting;
+        final List<ChatMessage> messages;
 
         Conversation(
                 String title,
                 String preview,
                 String time,
                 int unreadCount,
+                String avatarText,
+                int avatarColorRes,
+                boolean online,
                 String status,
-                String greeting
+                List<ChatMessage> messages
         ) {
             this.title = title;
             this.preview = preview;
             this.time = time;
             this.unreadCount = unreadCount;
+            this.avatarText = avatarText;
+            this.avatarColorRes = avatarColorRes;
+            this.online = online;
             this.status = status;
-            this.greeting = greeting;
+            this.messages = messages;
         }
     }
 
@@ -328,6 +419,8 @@ public class ChatFragment extends Fragment {
         }
 
         private static class ConversationViewHolder extends RecyclerView.ViewHolder {
+            private final TextView textAvatarLetter;
+            private final View viewOnlineDot;
             private final TextView textChatName;
             private final TextView textChatPreview;
             private final TextView textChatTime;
@@ -335,6 +428,8 @@ public class ChatFragment extends Fragment {
 
             ConversationViewHolder(@NonNull View itemView) {
                 super(itemView);
+                textAvatarLetter = itemView.findViewById(R.id.textAvatarLetter);
+                viewOnlineDot = itemView.findViewById(R.id.viewOnlineDot);
                 textChatName = itemView.findViewById(R.id.textChatName);
                 textChatPreview = itemView.findViewById(R.id.textChatPreview);
                 textChatTime = itemView.findViewById(R.id.textChatTime);
@@ -342,6 +437,9 @@ public class ChatFragment extends Fragment {
             }
 
             void bind(Conversation conversation, OnConversationClickListener clickListener) {
+                textAvatarLetter.setText(conversation.avatarText);
+                setAvatarColor(conversation.avatarColorRes);
+                viewOnlineDot.setVisibility(conversation.online ? View.VISIBLE : View.GONE);
                 textChatName.setText(conversation.title);
                 textChatPreview.setText(conversation.preview);
                 textChatTime.setText(conversation.time);
@@ -352,6 +450,13 @@ public class ChatFragment extends Fragment {
                     textUnreadBadge.setVisibility(View.GONE);
                 }
                 itemView.setOnClickListener(v -> clickListener.onConversationClick(conversation));
+            }
+
+            private void setAvatarColor(int colorRes) {
+                GradientDrawable background = new GradientDrawable();
+                background.setShape(GradientDrawable.OVAL);
+                background.setColor(ContextCompat.getColor(itemView.getContext(), colorRes));
+                textAvatarLetter.setBackground(background);
             }
         }
     }

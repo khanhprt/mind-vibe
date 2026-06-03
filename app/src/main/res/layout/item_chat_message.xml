@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="16dp"
+    android:gravity="start|bottom"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
     android:paddingTop="5dp"
-    android:paddingEnd="16dp"
+    android:paddingEnd="12dp"
     android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/textMessageAvatarStart"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_avatar_circle"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="M"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textMessageBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="2dp"
-        android:paddingStart="14dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="14dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/purple_dark"
+        android:paddingStart="12dp"
+        android:paddingTop="9dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="9dp"
+        android:textColor="@color/vibe_text_primary"
         android:textSize="14sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textMessageAvatarEnd"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_avatar_teal"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="T"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+</LinearLayout>

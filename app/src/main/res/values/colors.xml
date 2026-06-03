@@ -20,6 +20,22 @@
 
     <color name="bg_screen">#F7F4FC</color>
 
+    <!-- Main app UI palette -->
+    <color name="vibe_primary">#7C3AED</color>
+    <color name="vibe_primary_dark">#5B21B6</color>
+    <color name="vibe_primary_soft">#F3E8FF</color>
+    <color name="vibe_surface">#FAF7FF</color>
+    <color name="vibe_text_primary">#2E214A</color>
+    <color name="vibe_text_secondary">#74648E</color>
+    <color name="vibe_text_hint">#A994C5</color>
+    <color name="vibe_divider">#E9DDF8</color>
+    <color name="vibe_green">#28C76F</color>
+    <color name="vibe_red">#F04444</color>
+    <color name="vibe_orange">#FF9F1C</color>
+    <color name="vibe_pink">#F0529C</color>
+    <color name="vibe_teal">#11A8A6</color>
+    <color name="vibe_gray_avatar">#7D8793</color>
+
     <!-- Soft purple background for AI avatar chip -->
     <color name="purple_soft_bg">#F0EAFB</color>
 

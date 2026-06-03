@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean isAdded = databaseHelper.addUser(email, password);
 
                 if (isAdded) {
+                    SessionManager.saveLogin(RegisterActivity.this, email);
                     Toast.makeText(RegisterActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                     openMainActivity();
                 } else {

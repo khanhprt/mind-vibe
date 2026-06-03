@@ -8,10 +8,10 @@
         <item name="boxStrokeColor">@color/purple_border</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">1.5dp</item>
-        <item name="boxCornerRadiusTopStart">12dp</item>
-        <item name="boxCornerRadiusTopEnd">12dp</item>
-        <item name="boxCornerRadiusBottomStart">12dp</item>
-        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
         <item name="hintEnabled">false</item>
         <!-- focused stroke color override via colorPrimary in theme, or set programmatically -->
     </style>
@@ -22,7 +22,7 @@
         <item name="android:textSize">13sp</item>
         <item name="strokeColor">@color/purple_border</item>
         <item name="strokeWidth">1dp</item>
-        <item name="cornerRadius">12dp</item>
+        <item name="cornerRadius">10dp</item>
         <item name="backgroundTint">@color/white</item>
         <item name="android:stateListAnimator">@null</item>
         <item name="android:elevation">0dp</item>
@@ -31,15 +31,15 @@
     </style>
 
     <style name="MindVibeChatInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxBackgroundColor">#F7F4FC</item>
+        <item name="boxBackgroundColor">@color/vibe_surface</item>
         <item name="boxBackgroundMode">outline</item>
-        <item name="boxStrokeColor">@color/purple_border</item>
+        <item name="boxStrokeColor">@color/vibe_divider</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">1.5dp</item>
-        <item name="boxCornerRadiusTopStart">20dp</item>
-        <item name="boxCornerRadiusTopEnd">20dp</item>
-        <item name="boxCornerRadiusBottomStart">20dp</item>
-        <item name="boxCornerRadiusBottomEnd">20dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
         <item name="hintEnabled">false</item>
     </style>
 

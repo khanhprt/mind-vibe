@@ -20,6 +20,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (SessionManager.isLoggedIn(this)) {
+            openMainActivity();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
 
         databaseHelper = new DatabaseHelper(this);
@@ -43,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 boolean isValid = databaseHelper.checkUser(email, password);
 
                 if (isValid) {
+                    SessionManager.saveLogin(LoginActivity.this, email);
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     openMainActivity();
                 } else {

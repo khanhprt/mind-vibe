@@ -5,7 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +46,12 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
         return position;
     }
 
+    public void setMessages(List<ChatMessage> newMessages) {
+        messages.clear();
+        messages.addAll(newMessages);
+        notifyDataSetChanged();
+    }
+
     public void replaceMessage(int position, ChatMessage message) {
         if (position < 0 || position >= messages.size()) {
             return;
@@ -56,28 +62,34 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
+        private final TextView textMessageAvatarStart;
         private final TextView textMessageBody;
+        private final TextView textMessageAvatarEnd;
 
         MessageViewHolder(@NonNull View itemView) {
             super(itemView);
+            textMessageAvatarStart = itemView.findViewById(R.id.textMessageAvatarStart);
             textMessageBody = itemView.findViewById(R.id.textMessageBody);
+            textMessageAvatarEnd = itemView.findViewById(R.id.textMessageAvatarEnd);
         }
 
         void bind(ChatMessage message) {
+            boolean fromUser = message.isFromUser();
             textMessageBody.setText(message.getText());
             textMessageBody.setTypeface(null, message.isLoading() ? Typeface.ITALIC : Typeface.NORMAL);
-            textMessageBody.setMaxWidth((int) (itemView.getResources().getDisplayMetrics().widthPixels * 0.78f));
+            textMessageBody.setMaxWidth((int) (itemView.getResources().getDisplayMetrics().widthPixels * 0.68f));
 
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) textMessageBody.getLayoutParams();
-            params.gravity = message.isFromUser() ? Gravity.END : Gravity.START;
-            textMessageBody.setLayoutParams(params);
+            LinearLayout row = (LinearLayout) itemView;
+            row.setGravity(fromUser ? Gravity.END | Gravity.BOTTOM : Gravity.START | Gravity.BOTTOM);
+            textMessageAvatarStart.setVisibility(fromUser ? View.GONE : View.VISIBLE);
+            textMessageAvatarEnd.setVisibility(fromUser ? View.VISIBLE : View.GONE);
 
-            if (message.isFromUser()) {
+            if (fromUser) {
                 textMessageBody.setBackgroundResource(R.drawable.bg_chat_bubble_user);
                 textMessageBody.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.white));
             } else {
                 textMessageBody.setBackgroundResource(R.drawable.bg_chat_bubble_ai);
-                textMessageBody.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.purple_dark));
+                textMessageBody.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.vibe_text_primary));
             }
         }
     }
