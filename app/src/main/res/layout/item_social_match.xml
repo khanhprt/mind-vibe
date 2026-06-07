@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_friend_card"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textFriendAvatar"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:background="@drawable/bg_avatar_circle"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="A"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textFriendName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:text="An Nguyen"
+                android:textColor="@color/vibe_text_primary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textFriendSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Binh tam, can nguoi dong hanh nhe nhang"
+                android:textColor="@color/vibe_text_secondary"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textMatchScore"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_match_score"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:minWidth="56dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="92%"
+            android:textColor="@color/vibe_teal"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textFriendReason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="2dp"
+        android:text="Cung muc nang luong va deu muon ket noi nhe nhang."
+        android:textColor="@color/vibe_text_primary"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/textFriendSignals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Ngu 6h50 | Nang luong 7/10 | Stress cong viec"
+        android:textColor="@color/vibe_text_hint"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/buttonAddFriend"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_connect_button"
+        android:fontFamily="sans-serif-medium"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="Ket ban"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+</LinearLayout>
